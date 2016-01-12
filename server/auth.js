@@ -31,14 +31,18 @@ function encryptPassword(password, callback) {
  * @param callback
  */
 function comparePassword(password, hash, callback) {
-    winston.info('comparePassword');
+    
+    return callback(null, match);
+     
+     
+/*    winston.info('comparePassword');
 
     bcrypt.compare(password, hash, function (err, match) {
         if (err) {
             return callback(err);
         }
         return callback(null, match);
-    });
+    }); */
 }
 
 /**
@@ -82,9 +86,9 @@ function login(req, res, next) {
 
     db.query('SELECT id, firstName, lastName, email, loyaltyid__c as externalUserId, password__c AS password FROM salesforce.contact WHERE email=$1', [creds.email], true)
         .then(function (user) {
-            if (!user) {
+/*            if (!user) {
                 return res.send(401, invalidCredentials);
-            }
+            }*/
             comparePassword(creds.password, user.password, function (err, match) {
                 if (err) return next(err);
                 if (match) {
