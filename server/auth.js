@@ -31,10 +31,10 @@ function encryptPassword(password, callback) {
  * @param callback
  */
 function comparePassword(password, hash, callback) {
-    
+
     return callback(null, match);
-     
-     
+
+
 /*    winston.info('comparePassword');
 
     bcrypt.compare(password, hash, function (err, match) {
@@ -54,7 +54,7 @@ function createAccessToken(user) {
     winston.info('createAccessToken');
     var token = uuid.v4(),
         deferred = Q.defer();
-    
+
     db.query('INSERT INTO tokens (userId, externalUserId, token) VALUES ($1, $2, $3)', [user.id, user.externaluserid, token])
         .then(function() {
             deferred.resolve(token);
@@ -76,7 +76,7 @@ function login(req, res, next) {
     winston.info('login');
 
     var creds = req.body;
-    console.log(creds);
+    console.log("trying to log with :", creds);
 
     // Don't allow empty passwords which may allow people to login using the email address of a Facebook user since
     // these users don't have passwords
@@ -97,7 +97,7 @@ function login(req, res, next) {
                             return res.send({'user':{'email': user.email, 'firstName': user.firstname, 'lastName': user.lastname}, 'token': token});
                         })
                         .catch(function(err) {
-                            return next(err);    
+                            return next(err);
                         });
                 } else {
                     // Passwords don't match
@@ -106,7 +106,7 @@ function login(req, res, next) {
             });
         })
         .catch(next);
-};
+}
 
 /**
  * Logout user
@@ -116,7 +116,7 @@ function login(req, res, next) {
  */
 function logout(req, res, next) {
     winston.info('logout');
-    var token = req.headers['authorization'];
+    var token = req.headers.authorization;
     winston.info('Logout token:' + token);
     db.query('DELETE FROM tokens WHERE token = $1', [token])
         .then(function () {
@@ -124,7 +124,7 @@ function logout(req, res, next) {
             res.send('OK');
         })
         .catch(next);
-};
+}
 
 /**
  * Signup
@@ -167,7 +167,7 @@ function signup(req, res, next) {
             });
         })
         .catch(next);
-};
+}
 
 /**
  * Create a user
@@ -180,6 +180,8 @@ function createUser(user, password) {
     var deferred = Q.defer(),
         externalUserId = (+new Date()).toString(36); // TODO: more robust UID logic
 
+        console.log("trying to create a user with :", user.email, password, user.firstName, user.lastName, config.contactsAccountId);
+
     db.query('INSERT INTO salesforce.contact (email, password__c, firstname, lastname, leadsource, loyaltyid__c, accountid) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id, firstName, lastName, email, loyaltyid__c as externalUserId',
         [user.email, password, user.firstName, user.lastName, 'Loyalty App', externalUserId, config.contactsAccountId], true)
         .then(function (insertedUser) {
@@ -189,7 +191,7 @@ function createUser(user, password) {
             deferred.reject(err);
         });
     return deferred.promise;
-};
+}
 
 /**
  * Validate authorization token
@@ -199,9 +201,9 @@ function createUser(user, password) {
  * @returns {*|ServerResponse}
  */
 function validateToken (req, res, next) {
-    var token = req.headers['authorization'];
+    var token = req.headers.authorization;
     if (!token) {
-        token = req.session['token']; // Allow token to be passed in session cookie
+        token = req.session.token; // Allow token to be passed in session cookie
     }
     if (!token) {
         winston.info('No token provided');
@@ -218,7 +220,7 @@ function validateToken (req, res, next) {
             return next();
         })
         .catch(next);
-};
+}
 
 exports.login = login;
 exports.logout = logout;
