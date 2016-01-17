@@ -201,6 +201,9 @@ function createUser(user, password) {
  * @returns {*|ServerResponse}
  */
 function validateToken (req, res, next) {
+
+    console.log("In the validate token function ",req, res, next);
+
     var token = req.headers.authorization;
     if (!token) {
         token = req.session.token; // Allow token to be passed in session cookie
@@ -209,6 +212,8 @@ function validateToken (req, res, next) {
         winston.info('No token provided');
         return res.send(401, 'Invalid token');
     }
+    console.log("In the validate token function before the select ",req, res, next);
+
     db.query('SELECT * FROM tokens WHERE token = $1', [token], true, true)
         .then(function (item) {
             if (!item) {
