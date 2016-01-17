@@ -202,7 +202,6 @@ function createUser(user, password) {
  */
 function validateToken (req, res, next) {
 
-    console.log("In the validate token function ",req, res, next);
 
     var token = req.headers.authorization;
     if (!token) {
@@ -212,10 +211,14 @@ function validateToken (req, res, next) {
         winston.info('No token provided');
         return res.send(401, 'Invalid token');
     }
-    console.log("In the validate token function before the select ",req, res, next);
+
+
+    console.log("headers :",req.headers.authorization);
 
     db.query('SELECT * FROM tokens WHERE token = $1', [token], true, true)
         .then(function (item) {
+          console.log("In the validate token function in the select ",item);
+
             if (!item) {
                 winston.info('Invalid token');
                 return res.send(401, 'Invalid token');
