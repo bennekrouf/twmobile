@@ -1,0 +1,15 @@
+db:
+  image: postgres
+
+myapp:
+  build: .
+  ports:
+    - "3000:5000"
+  links:
+    - db
+  volumes:
+    - /Users/mbennekrouf/workspace/nibs
+  environment:
+    - PGHOST=db
+    - PGDATABASE=postgre
+    - PGUSER=postgre

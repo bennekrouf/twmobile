@@ -52,7 +52,7 @@ function deleteItem(req, res, next) {
  */
 function deleteItems(userId) {
     console.log('deleting wallet items for user ' + userId);
-    return db.query('DELETE FROM wallet WHERE userId=$1', [userId], true)
+    return db.query('DELETE FROM wallet WHERE userId=$1', [userId], true);
 }
 
 /**
@@ -62,6 +62,7 @@ function deleteItems(userId) {
  * @param next
  */
 function getItems(req, res, next) {
+
     var userId = req.userId;
     db.query("SELECT id, name, startDate, endDate, description, image__c AS image, campaignPage__c AS campaignPage, publishDate__c AS publishDate FROM wallet, salesforce.campaign WHERE offerId = id AND userId=$1 AND type='Offer' AND status='In Progress' ORDER BY publishDate DESC LIMIT $2",
             [userId, 20])

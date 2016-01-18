@@ -1,7 +1,7 @@
 module.exports = {
 
-//    databaseURL: process.env.DATABASE_URL || "postgres://@127.0.0.1:5432/nibs",
-    databaseURL: "postgres://foryjqjmofgrez:nDa5AUDuNMAhi0IBSWTS_oFoZF@ec2-54-195-252-202.eu-west-1.compute.amazonaws.com:5432/d7lfvch6ekhl75",
+    databaseURL: process.env.DATABASE_URL || "postgres://@127.0.0.1:5432/nibs",
+//    databaseURL: "postgres://foryjqjmofgrez:nDa5AUDuNMAhi0IBSWTS_oFoZF@ec2-54-195-252-202.eu-west-1.compute.amazonaws.com:5432/d7lfvch6ekhl75",
 
     // Nibs users are created as Contacts under a generic Account in SFDC. This is the id of the generic account.
     contactsAccountId: process.env.CONTACTS_ACCOUNT_ID || "0012400000UMEfl",
