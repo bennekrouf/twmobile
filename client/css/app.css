@@ -82,7 +82,7 @@ a {
 .welcome h2 {
     font-family: "Source Sans Light";
     font-size: 2.4rem;
-    color: #ffffff;
+    color: #000;
     line-height: 1.8rem;
 }
 
@@ -136,7 +136,7 @@ a {
 }
 
 .welcome .button-clear {
-    color: #eeeeee;
+    color: #000;
 }
 
 .menu-left h1 {
