@@ -1,7 +1,7 @@
-FROM nodesource/node:4.0.0
+FROM nodesource/node:5.1.1
 
 ADD package.json package.json
-RUN npm install
+RUN sudo apt-get install libpq-dev && npm install
 ADD . .
-
-CMD ["node","app.js"]
+EXPOSE 5000
+CMD ["node","server.js"]

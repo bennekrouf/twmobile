@@ -135,6 +135,8 @@ function logout(req, res, next) {
  */
 function signup(req, res, next) {
 
+  console.log("dans le signup ");
+
     winston.info('signup');
 
     var user = req.body;
@@ -151,6 +153,9 @@ function signup(req, res, next) {
     if (!validator.isLength(user.password, 4)) {
         return res.send(400, "Password must be at least 4 characters");
     }
+
+
+    console.log("avant le create user du signup ");
 
     db.query('SELECT id FROM salesforce.contact WHERE email=$1', [user.email], true)
         .then(function (u) {
@@ -185,9 +190,12 @@ function createUser(user, password) {
     db.query('INSERT INTO salesforce.contact (email, password__c, firstname, lastname, leadsource, loyaltyid__c, accountid) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id, firstName, lastName, email, loyaltyid__c as externalUserId',
         [user.email, password, user.firstName, user.lastName, 'Loyalty App', externalUserId, config.contactsAccountId], true)
         .then(function (insertedUser) {
+          console.log("cool sur le create aavec inserted user :", insertedUser);
+
             deferred.resolve(insertedUser);
         })
         .catch(function(err) {
+          console.log("ya une erreur sur le create : ", err);
             deferred.reject(err);
         });
     return deferred.promise;

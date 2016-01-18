@@ -20,6 +20,9 @@ function getAll(req, res, next) {
 };
 
 function getById(req, res, next) {
+  console.log("id in offer : ", req.params.id);
+
+
     var id = req.params.id;
     findById(id)
         .then(function (offer) {
