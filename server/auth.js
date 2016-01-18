@@ -187,20 +187,8 @@ function createUser(user, password) {
         console.log('config et config.contactsAccountId : ', config, config.contactsAccountId);
         console.log("trying to create a user with :", user.email.length, password.length, user.firstName.length, user.lastName.length);
 
-    // db.query('INSERT INTO salesforce.contact (email, password__c, firstname, lastname, leadsource, loyaltyid__c, accountid) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id, firstName, lastName, email, loyaltyid__c as externalUserId',
-    //     [user.email, password, user.firstName, user.lastName, 'Loyalty App', externalUserId, config.contactsAccountId], true)
-    //     .then(function (insertedUser) {
-    //       console.log("cool sur le create aavec inserted user :", insertedUser);
-    //
-    //         deferred.resolve(insertedUser);
-    //     })
-    //     .catch(function(err) {
-    //       console.log("ya une erreur sur le create : ", err);
-    //         deferred.reject(err);
-    //     });
-
-    db.query('INSERT INTO salesforce.contact (email, password__c) VALUES ($1, $2) RETURNING id',
-        [user.email, password], true)
+    db.query('INSERT INTO salesforce.contact (email, password__c, firstname, lastname, leadsource, loyaltyid__c, accountid) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id, firstName, lastName, email, loyaltyid__c as externalUserId',
+        [user.email, password, user.firstName, user.lastName, 'Loyalty App', externalUserId, config.contactsAccountId], true)
         .then(function (insertedUser) {
           console.log("cool sur le create aavec inserted user :", insertedUser);
 
@@ -211,6 +199,18 @@ function createUser(user, password) {
             deferred.reject(err);
         });
 
+    // db.query('INSERT INTO salesforce.contact (email, password__c) VALUES ($1, $2) RETURNING id',
+    //     [user.email, password], true)
+    //     .then(function (insertedUser) {
+    //       console.log("cool sur le create aavec inserted user :", insertedUser);
+    //
+    //         deferred.resolve(insertedUser);
+    //     })
+    //     .catch(function(err) {
+    //       console.log("ya une erreur sur le create : ", err);
+    //         deferred.reject(err);
+    //     });
+    //
 
 
 
