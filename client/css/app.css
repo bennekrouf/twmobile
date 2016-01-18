@@ -251,15 +251,15 @@ a {
 }
 
 .bar-status {
-    border-color: #73732E;
-    background-color: #73732E;
+    border-color: #000;
+    background-color: #000;
     background-image: none;
     color: #fff;
 }
 
 .bar-status1 {
-    border-color: #73732E;
-    background-color: #73732E;
+    border-color: #000;
+    background-color: #000;
     background-image: none;
     color: #fff;
 }
@@ -281,8 +281,8 @@ a {
 
 .button-status,
 {
-    border-color: #73732E;
-    background-color: #73732E;
+    border-color: #000;
+    background-color: #000;
     background-image: none;
     color: #fff;
 }
@@ -290,7 +290,7 @@ a {
 .button-status1,
 .button-status1:hover,
 .button-status1:active {
-    background-color: #73732E;
+    background-color: #000;
     color: #fff;
 }
 
@@ -355,8 +355,8 @@ a {
 }
 
 .status-bar>div:nth-of-type(1) {
-    border-top: solid 2px #73732E;
-    color: #73732E !important;
+    border-top: solid 2px #000;
+    color: #000 !important;
 }
 
 .status-bar>div:nth-of-type(2) {
@@ -387,7 +387,7 @@ a {
 }
 
 .status1-bg {
-    background: #73732E;
+    background: #000;
 }
 
 .status2-bg {
@@ -399,7 +399,7 @@ a {
 }
 
 .status1 {
-    color: #73732E;
+    color: #000;
 }
 
 .status2 {
