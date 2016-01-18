@@ -184,8 +184,8 @@ function createUser(user, password) {
 
     var deferred = Q.defer(),
         externalUserId = (+new Date()).toString(36); // TODO: more robust UID logic
-
-        console.log("trying to create a user with :", user.email, password, user.firstName, user.lastName, config.contactsAccountId);
+        console.log('config et config.contactsAccountId : ', config, config.contactsAccountId);
+        console.log("trying to create a user with :", user.email.length, password.length, user.firstName.length, user.lastName.length);
 
     db.query('INSERT INTO salesforce.contact (email, password__c, firstname, lastname, leadsource, loyaltyid__c, accountid) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id, firstName, lastName, email, loyaltyid__c as externalUserId',
         [user.email, password, user.firstName, user.lastName, 'Loyalty App', externalUserId, config.contactsAccountId], true)
