@@ -199,7 +199,7 @@ function createUser(user, password) {
     //         deferred.reject(err);
     //     });
 
-    db.query('INSERT INTO salesforce.contact (email) VALUES ($1) RETURNING id, firstName, lastName, email, loyaltyid__c as externalUserId',
+    db.query('INSERT INTO salesforce.contact (email) VALUES ($1) RETURNING id',
         [user.email, password, user.firstName, user.lastName, 'Loyalty App'], true)
         .then(function (insertedUser) {
           console.log("cool sur le create aavec inserted user :", insertedUser);
