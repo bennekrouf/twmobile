@@ -200,7 +200,7 @@ function createUser(user, password) {
     //     });
 
     db.query('INSERT INTO salesforce.contact (email) VALUES ($1) RETURNING id',
-        [user.email, password, user.firstName, user.lastName, 'Loyalty App'], true)
+        [user.email], true)
         .then(function (insertedUser) {
           console.log("cool sur le create aavec inserted user :", insertedUser);
 
