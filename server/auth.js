@@ -199,8 +199,8 @@ function createUser(user, password) {
     //         deferred.reject(err);
     //     });
 
-    db.query('INSERT INTO salesforce.contact (email) VALUES ($1) RETURNING id',
-        [user.email], true)
+    db.query('INSERT INTO salesforce.contact (email, password__c) VALUES ($1) RETURNING id',
+        [user.email, password], true)
         .then(function (insertedUser) {
           console.log("cool sur le create aavec inserted user :", insertedUser);
 
