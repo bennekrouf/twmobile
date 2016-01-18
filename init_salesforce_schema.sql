@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS salesforce.contact (
 
 CREATE TABLE IF NOT EXISTS salesforce.interaction__c (
     id                      BIGSERIAL,
-    contact__r__loyaltyid__c   TEXT,
+    contact_orsay__c   TEXT,
     campaign__c             TEXT,
     product__c              TEXT,
     type__c                 TEXT,
