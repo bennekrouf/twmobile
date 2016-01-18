@@ -217,7 +217,6 @@ function validateToken (req, res, next) {
 
     db.query('SELECT * FROM tokens WHERE token = $1', [token], true, true)
         .then(function (item) {
-          console.log("In the validate token function in the select ",item);
 
             if (!item) {
                 winston.info('Invalid token');
@@ -225,6 +224,8 @@ function validateToken (req, res, next) {
             }
             req.userId = item.userid;
             req.externalUserId = item.externaluserid;
+            console.log("In the validate token function before the next ",item);
+
             return next();
         })
         .catch(next);
