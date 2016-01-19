@@ -31,7 +31,7 @@ app.use(bodyParser({
 }));
 app.use(methodOverride());
 
-app.use(express.static(path.join(__dirname, './client')));
+app.use(express.static(path.join(__dirname, './www')));
 
 app.use(function(err, req, res, next) {
     console.log(err.stack);
