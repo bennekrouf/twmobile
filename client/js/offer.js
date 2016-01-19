@@ -105,12 +105,22 @@ angular.module('nibs.offer', ['openfb', 'nibs.status', 'nibs.activity', 'nibs.wa
         };
 
         $scope.saveToWallet = function () {
-            WalletItem.create({offerId: $scope.offer.id}).success(function(status) {
+            WalletItem.create({offerId: $scope.offer.id})
+            .then(function(status) {
                 Status.show('Saved to your wallet!');
-                Activity.create({type: "Saved to Wallet", points: 1000, offerId: $scope.offer.sfid, name: $scope.offer.name, image: $scope.offer.image})
-                    .success(function(status) {
+                Activity
+                .create({type: "Saved to Wallet", points: 1000, offerId: $scope.offer.sfid, name: $scope.offer.name, image: $scope.offer.image})
+                .then(function(status) {
                         Status.checkStatus(status);
-                    });
+                    })
+                  .catch(function(err){
+                    console.log("error when creating the activity :", err);
+                  });
+            }, function(err){
+              console.log("error when saving the wallet :", err);
+            })
+            .catch(function(err){
+              console.log("error when saving the wallet :", err);
             });
         };
 
