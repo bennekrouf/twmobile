@@ -22,7 +22,7 @@ angular.module('nibs.product', ['openfb', 'nibs.status', 'nibs.activity', 'nibs.
                         controller: "ProductDetailCtrl"
                     }
                 }
-            })
+            });
 
     })
 
@@ -49,7 +49,7 @@ angular.module('nibs.product', ['openfb', 'nibs.status', 'nibs.activity', 'nibs.
                 $scope.products = products;
                 $scope.$broadcast('scroll.refreshComplete');
             });
-        }
+        };
 
     })
 
