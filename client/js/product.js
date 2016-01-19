@@ -86,8 +86,9 @@ angular.module('nibs.product', ['openfb', 'nibs.status', 'nibs.activity', 'nibs.
         $scope.saveToWishList = function () {
             WishListItem.create({productId: $scope.product.id}).success(function(status) {
                 Status.show('Added to your wish list!');
-                Activity.create({/*type: "Added to Wish List", points: 1000, */productId: $scope.product.sfid /*, name: $scope.product.name, image: $scope.product.image*/})
+                Activity.create({type: "Added to Wish List", points: 1000, productId: $scope.product.sfid /*, name: $scope.product.name, image: $scope.product.image*/})
                     .success(function(status) {
+                      console.log("success from saveToWishList : ", status);
                         Status.checkStatus(status);
                     });
             });
