@@ -30,8 +30,8 @@ function addItem(req, res, next) {
             //   console.log("error in insert getPointBalance : ", err);
             //   next();
             // });
-            db.query('INSERT INTO salesforce.interaction__c (contact_orsay__c, campaign__c, product__c, type__c, points__c, name__c) VALUES ($1, $2, $3, $4, $5, $6)',
-                    [userId, activity.offerId, activity.productId, activity.type, activity.points, activity.name], true)
+            db.query('INSERT INTO salesforce.interaction__c (contact_orsay__c, campaign__c, product__c, type__c, points__c, name__c, picture__c) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+                    [userId, activity.offerId, activity.productId, activity.type, activity.points, activity.name, activity.image], true)
             .then(function() {
                 res.send({originalBalance: balance, points: activity.points, newBalance: balance + activity.points, originalStatus: getStatus(balance), newStatus: getStatus(balance + activity.points)});
             })
