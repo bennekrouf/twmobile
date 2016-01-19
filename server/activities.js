@@ -10,10 +10,12 @@ var db = require('./pghelper'),
  * @param next
  */
 function addItem(req, res, next) {
+  console.log('Adding activity req.body: ' + JSON.stringify(req.body));
+
+
     var userId = req.externalUserId,
         activity = req.body;
 
-    console.log('Adding activity: ' + JSON.stringify(activity));
 
     getPointBalance(userId)
         .then(function(result) {
