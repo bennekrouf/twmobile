@@ -11,11 +11,7 @@ var db = require('./pghelper'),
  */
 function addItem(req, res, next) {
   console.log('Adding activity req.body: ' + JSON.stringify(req.body));
-
-
-    var userId = req.externalUserId,
-        activity = req.body;
-
+    var userId = req.externalUserId, activity = req.body;
 
     getPointBalance(userId)
         .then(function(result) {
@@ -45,9 +41,9 @@ function addItem(req, res, next) {
  * @param next
  */
 function getItems(req, res, next) {
+  console.log('Activities - getItems:' + externalUserId);
 
     var externalUserId = req.externalUserId;
-    console.log('Activities - getItems:' + externalUserId);
 
     db.query("SELECT contact_orsay__c AS userId, campaign__c AS campaign, type__c AS type, name__c as name, picture__c as picture, points__c as points, createdDate FROM salesforce.interaction__c WHERE contact_orsay__c=$1 ORDER BY id DESC LIMIT 20", [externalUserId])
         .then(function (activities) {
@@ -65,6 +61,7 @@ function getItems(req, res, next) {
  * @param next
  */
 function deleteAll(req, res, next) {
+  console.log('Activities - deleteAll:' + externalUserId);
     var externalUserId = req.externalUserId,
         userId = req.userId;
 
@@ -91,6 +88,8 @@ function deleteItems(userId) {
  * @returns {*}
  */
 function getPointBalance(userId) {
+  console.log('getPointBalance activity items for user ' + userId);
+
     return db.query('select sum(points__c) as points from salesforce.interaction__c where contact_orsay__c=$1', [userId], true);
 }
 
