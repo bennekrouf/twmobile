@@ -1,7 +1,9 @@
 FROM nodesource/node:5.1.1
 
 ADD package.json package.json
-RUN sudo apt-get install libpq-dev && npm install
+RUN apt-get -qq update
+RUN aptitude install postgresql-server-dev-9.4
+RUN npm install
 ADD . .
 EXPOSE 5000
 CMD ["node","server.js"]

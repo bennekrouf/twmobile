@@ -45,7 +45,7 @@ function addItem(req, res, next) {
 function getItems(req, res, next) {
 
     var externalUserId = req.externalUserId;
-    console.log('external user id:' + externalUserId);
+    console.log('Activities - getItems:' + externalUserId);
 
     db.query("SELECT contact_orsay__c AS userId, campaign__c AS campaign, type__c AS type, name__c as name, picture__c as picture, points__c as points, createdDate FROM salesforce.interaction__c WHERE contact_orsay__c=$1 ORDER BY id DESC LIMIT 20", [externalUserId])
         .then(function (activities) {
@@ -53,7 +53,7 @@ function getItems(req, res, next) {
             return res.send(JSON.stringify(activities));
         })
         .catch(next);
-};
+}
 
 /**
  * Delete all activities for logged in user. Used for demo purpose to reset activities and start demo with empty list.
