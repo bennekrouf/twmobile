@@ -25,7 +25,6 @@ angular.module('nibs.activity', [])
             },
             create: function(activity) {
                 console.log("activities client : create : ", activity);
-                // return $http.get($rootScope.server.url + '/activities');
 
                return $http.post($rootScope.server.url + '/activities/', activity);
             },
