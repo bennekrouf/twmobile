@@ -61,7 +61,7 @@ angular.module('nibs.product', ['openfb', 'nibs.status', 'nibs.activity', 'nibs.
 
         $scope.shareOnFacebook = function () {
             Status.show('Shared on Facebook!');
-            Activity.create({type: "Shared on Facebook", points: 1000, productId: $scope.product.sfid, name: $scope.product.name, image: $scope.product.image})
+            Activity.create({type: "Shared on Facebook", points: 1000, productId: $scope.product.id, name: $scope.product.name, image: $scope.product.image})
                 .success(function(status) {
                     Status.checkStatus(status);
                 });
@@ -69,7 +69,7 @@ angular.module('nibs.product', ['openfb', 'nibs.status', 'nibs.activity', 'nibs.
 
         $scope.shareOnTwitter = function () {
             Status.show('Shared on Twitter!');
-            Activity.create({type: "Shared on Twitter", points: 1000, productId: $scope.product.sfid, name: $scope.product.name, image: $scope.product.image})
+            Activity.create({type: "Shared on Twitter", points: 1000, productId: $scope.product.id, name: $scope.product.name, image: $scope.product.image})
                 .success(function(status) {
                     Status.checkStatus(status);
                 });
@@ -77,7 +77,7 @@ angular.module('nibs.product', ['openfb', 'nibs.status', 'nibs.activity', 'nibs.
 
         $scope.shareOnGoogle = function () {
             Status.show('Shared on Google+!');
-            Activity.create({type: "Shared on Google+", points: 1000, productId: $scope.product.sfid, name: $scope.product.name, image: $scope.product.image})
+            Activity.create({type: "Shared on Google+", points: 1000, productId: $scope.product.id, name: $scope.product.name, image: $scope.product.image})
                 .success(function(status) {
                     Status.checkStatus(status);
                 });
@@ -86,7 +86,7 @@ angular.module('nibs.product', ['openfb', 'nibs.status', 'nibs.activity', 'nibs.
         $scope.saveToWishList = function () {
             WishListItem.create({productId: $scope.product.id}).success(function(status) {
                 Status.show('Added to your wish list!');
-                Activity.create({type: "Added to Wish List", points: 1000, productId: $scope.product.sfid /*, name: $scope.product.name, image: $scope.product.image*/})
+                Activity.create({type: "Added to Wish List", points: 1000, productId: $scope.product.id, name: $scope.product.name, image: $scope.product.image})
                     .success(function(status) {
                       console.log("success from saveToWishList : ", status);
                         Status.checkStatus(status);
