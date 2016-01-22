@@ -1,4 +1,4 @@
-angular.module('nibs.offer', [])
+angular.module('nibs.shop', [])
 
 // Routes
 .config(function ($stateProvider) {
