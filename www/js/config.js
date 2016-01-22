@@ -5,8 +5,8 @@ angular.module('nibs.config', [])
     .constant('FB_APP_ID','1618878675020266')
 
     .constant('STATUS_LABELS', [
-        'Member',
-        'Premium Member',
+        'Silver Member',
+        'Gold Member',
         'Platinum Member'
     ])
 
