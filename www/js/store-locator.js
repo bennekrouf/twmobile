@@ -46,7 +46,7 @@ angular.module('nibs.store-locator', [])
             $scope.stores = stores;
             for (var i=0; i<stores.length; i++) {
                 var store = stores[i];
-                L.marker([store.latitude, store.longitude], {icon: icon}).addTo(map);
+                L.marker([store.latitude, store.longitude]/*, {icon: icon}*/).addTo(map);
             }
         });
 
