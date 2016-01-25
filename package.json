@@ -36,5 +36,9 @@
     "request": "~2.40.0",
     "validator": "~3.5.0",
     "winston": "~0.7.3"
-  }
+  },
+  "cordovaPlugins": [],
+  "cordovaPlatforms": [
+    "ios"
+  ]
 }
