@@ -23,7 +23,7 @@ angular.module('nibs.profile', ['nibs.s3uploader', 'nibs.config', 'nibs.status']
                         controller: "EditProfileCtrl"
                     }
                 }
-            })
+            });
 
     })
 
@@ -31,11 +31,11 @@ angular.module('nibs.profile', ['nibs.s3uploader', 'nibs.config', 'nibs.status']
     .factory('User', function ($http, $rootScope) {
         return {
             get: function () {
-                return $http.get($rootScope.server.url + '/users/me', null)
+                return $http.get($rootScope.server.url + '/users/me', null);
             },
 
             update: function (user) {
-                return $http.put($rootScope.server.url + '/users/me', user)
+                return $http.put($rootScope.server.url + '/users/me', user);
             }
         };
 
@@ -44,32 +44,37 @@ angular.module('nibs.profile', ['nibs.s3uploader', 'nibs.config', 'nibs.status']
     .factory('Preference', function() {
 
         var preferences = [
-            { text: 'Dark', value: 'Dark' },
-            { text: 'Milk', value: 'Milk' },
-            { text: 'White', value: 'White' }
+            { text: '34', value: '34' },
+            { text: '36', value: '36' },
+            { text: '38', value: '38' },
+            { text: '40', value: '40' },
+            { text: '42', value: '42' },
+            { text: '44', value: '44' }
         ];
 
         return {
             all: function() {
                 return preferences;
             }
-        }
+        };
     })
 
     .factory('Size', function() {
 
         var sizes = [
-            { text: 'Small', value: 'Small' },
-            { text: 'Medium', value: 'Medium' },
-            { text: 'Large', value: 'Large' },
-            { text: 'X-Large', value: 'X-Large' }
+            { text: 'XXS', value: 'XXS' },
+            { text: 'XS', value: 'XS' },
+            { text: 'S', value: 'S' },
+            { text: 'M', value: 'M' },
+            { text: 'L', value: 'L' },
+            { text: 'XL', value: 'XL' }
         ];
 
         return {
             all: function() {
                 return sizes;
             }
-        }
+        };
     })
 
     //Controllers
@@ -97,7 +102,7 @@ angular.module('nibs.profile', ['nibs.s3uploader', 'nibs.config', 'nibs.status']
                 $state.go('app.messages');
             }
 
-        }
+        };
 
     })
 
@@ -114,7 +119,7 @@ angular.module('nibs.profile', ['nibs.s3uploader', 'nibs.config', 'nibs.status']
         $scope.update = function () {
             User.update($scope.user).success(function() {
                 Status.show('Your profile has been saved.');
-            })
+            });
         };
 
         $scope.addPicture = function (from) {
