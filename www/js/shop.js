@@ -9,8 +9,13 @@ angular.module('nibs.shop', [])
             url: "/shop",
             views: {
                 'menuContent' :{
-                    templateUrl: "templates/shop.html"
+                    templateUrl: "templates/shop.html",
+                    controller: 'DashCtrl'
+
                 }
             }
         });
-});
+})
+//Controllers
+.controller('DashCtrl', function($scope) {})
+;
